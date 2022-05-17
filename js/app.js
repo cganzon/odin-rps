@@ -11,3 +11,22 @@ function computerPlay() {
     // Use the generated random index to return a random item in the choices array
     return choices[randIndex];
 }
+
+// Function that plays a single round of rock paper scissors
+function playRound(playerSelection, computerSelection) {
+    // Make playerSelection case insensitive by converting to lowercase
+    let playerChoice = playerSelection.toLowerCase();
+
+    // If there is a draw
+    if(playerChoice === computerSelection) {
+        return `Draw! You both chose ${playerChoice}`;
+    }
+    // If the player wins
+    else if(playerChoice === 'rock' && computerSelection === 'scissors' || playerChoice === 'scissors' && computerSelection === 'paper' || playerChoice === 'paper' && computerSelection === 'rock') {
+        return `You win! ${playerChoice} beats ${computerSelection}`;
+    }
+    // If the player loses
+    else {
+        return `You lose! ${computerSelection} beats ${playerChoice}`;
+    }
+}
