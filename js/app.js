@@ -7,8 +7,8 @@ buttons.forEach(button => {
   button.addEventListener("click", e => {
     let playerSelection =  e.target.getAttribute("data-choice");
     let computerSelection = computerPlay();
-    console.log(playerSelection, computerSelection)
-    playRound(playerSelection, computerSelection)
+    displayChoices(playerSelection, computerSelection);
+    playRound(playerSelection, computerSelection);
   })
 })
 
@@ -17,6 +17,13 @@ function computerPlay() {
   const choices = ["Rock", "Paper", "Scissors"];
   let randIndex = Math.floor(Math.random() * choices.length);
   return choices[randIndex];
+}
+
+function displayChoices(playerSelection, computerSelection) {
+  const playerChoice = document.querySelector(".player-choice");
+  playerChoice.textContent = playerSelection;
+  const computerChoice = document.querySelector(".computer-choice");
+  computerChoice.textContent = computerSelection;
 }
 
 // Function that plays a single round of rock paper scissors

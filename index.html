@@ -8,11 +8,27 @@
     <title>Odin Rock Paper Scissors</title>
 </head>
 <body>
-    <div class="buttons">
-        <button class="btn" data-choice="Rock">Rock</button>
-        <button class="btn" data-choice="Paper">Paper</button>
-        <button class="btn" data-choice="Scissors">Scissors</button>
-    </div>
+    <main class="container">
+        <h1 class="title">Rock, Paper, Scissors!</h1>
+        <h2 class="lead">Choose your weapon</h2>
+        <div class="buttons">
+            <button class="btn" data-choice="Rock">Rock</button>
+            <button class="btn" data-choice="Paper">Paper</button>
+            <button class="btn" data-choice="Scissors">Scissors</button>
+        </div>
+        <div class="choices-display">
+            <div class="player">
+                <h3 class="player-title">You</h3>
+                <p class="player-choice"></p>
+            </div>
+            <div class="computer">
+                <h3 class="computer-title">Computer</h3>
+                <p class="computer-choice"></p>
+            </div>
+        </div>
+        <h3 class="match-result"></h3>
+        <h3 class="game-result"></h3>
+    </main>
     
     <script src="./js/app.js"></script>
 </body>
