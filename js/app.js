@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll(".btn");
 let playerScore = 0;
 let computerScore = 0;
+let gameOver = false;
 const winningScore = 5;
 
 buttons.forEach((button) => {
@@ -37,6 +38,7 @@ function displayRoundResult(message, playerScore, computerScore) {
 function displayGameResult(message) {
   const gameResult = document.querySelector(".game-result");
   gameResult.textContent = message;
+  endGame();
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -69,4 +71,8 @@ function checkWinner(playerScore, computerScore) {
     message = "You lost the game!";
     displayGameResult(message);
   }
+}
+
+function endGame() {
+  return buttons.forEach(button => button.disabled = true);
 }
