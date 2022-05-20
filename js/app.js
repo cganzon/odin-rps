@@ -12,7 +12,6 @@ buttons.forEach((button) => {
   });
 });
 
-// Function that generates a random computer choice from the choices array
 function computerPlay() {
   const choices = ["Rock", "Paper", "Scissors"];
   let randIndex = Math.floor(Math.random() * choices.length);
@@ -40,14 +39,11 @@ function displayGameResult(message) {
   gameResult.textContent = message;
 }
 
-// Function that plays a single round of rock paper scissors
 function playRound(playerSelection, computerSelection) {
   let message = "";
-  // If there is a draw
   if (playerSelection === computerSelection) {
     message = `Draw! You both chose ${playerSelection}`;
   }
-  // If the player wins
   else if (
     (playerSelection === "Rock" && computerSelection === "Scissors") ||
     (playerSelection === "Scissors" && computerSelection === "Paper") ||
@@ -56,7 +52,6 @@ function playRound(playerSelection, computerSelection) {
     playerScore++;
     message = `You win! ${playerSelection} beats ${computerSelection}`;
   }
-  // If the player loses
   else {
     computerScore++;
     message = `You lose! ${computerSelection} beats ${playerSelection}`;
