@@ -3,14 +3,14 @@ let playerScore = 0;
 let computerScore = 0;
 const winningScore = 5;
 
-buttons.forEach(button => {
-  button.addEventListener("click", e => {
-    let playerSelection =  e.target.getAttribute("data-choice");
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    let playerSelection = e.target.getAttribute("data-choice");
     let computerSelection = computerPlay();
     displayChoices(playerSelection, computerSelection);
     playRound(playerSelection, computerSelection);
-  })
-})
+  });
+});
 
 // Function that generates a random computer choice from the choices array
 function computerPlay() {
@@ -26,11 +26,22 @@ function displayChoices(playerSelection, computerSelection) {
   computerChoice.textContent = computerSelection;
 }
 
+function displayRoundResult(message, playerScore, computerScore) {
+  const roundResult = document.querySelector(".round-result");
+  const playerScoreDisplay = document.querySelector(".player-score");
+  const computerScoreDisplay = document.querySelector(".computer-score");
+  roundResult.textContent = message;
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
+}
+
 // Function that plays a single round of rock paper scissors
 function playRound(playerSelection, computerSelection) {
+  let message = "";
   // If there is a draw
   if (playerSelection === computerSelection) {
-    console.log(`Draw! You both chose ${playerSelection}`);
+    message = `Draw! You both chose ${playerSelection}`;
+    displayRoundResult(message, playerScore, computerScore);
   }
   // If the player wins
   else if (
@@ -39,22 +50,22 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "Paper" && computerSelection === "Rock")
   ) {
     playerScore++;
-    console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+    message = `You win! ${playerSelection} beats ${computerSelection}`;
+    displayRoundResult(message, playerScore, computerScore);
   }
   // If the player loses
   else {
-    computerScore++
-    console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+    computerScore++;
+    message = `You lose! ${computerSelection} beats ${playerSelection}`;
+    displayRoundResult(message, playerScore, computerScore);
   }
-  console.log(`Player: ${playerScore}`)
-  console.log(`Computer: ${computerScore}`);
   checkWinner(playerScore, computerScore);
 }
 
 function checkWinner(playerScore, computerScore) {
-  if(playerScore === winningScore) {
-    console.log('You won the game!');
-  } else if(computerScore === winningScore) {
-    console.log('You lost the game!')
+  if (playerScore === winningScore) {
+    console.log("You won the game!");
+  } else if (computerScore === winningScore) {
+    console.log("You lost the game!");
   }
 }
