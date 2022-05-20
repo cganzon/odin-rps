@@ -35,13 +35,17 @@ function displayRoundResult(message, playerScore, computerScore) {
   computerScoreDisplay.textContent = computerScore;
 }
 
+function displayGameResult(message) {
+  const gameResult = document.querySelector(".game-result");
+  gameResult.textContent = message;
+}
+
 // Function that plays a single round of rock paper scissors
 function playRound(playerSelection, computerSelection) {
   let message = "";
   // If there is a draw
   if (playerSelection === computerSelection) {
     message = `Draw! You both chose ${playerSelection}`;
-    displayRoundResult(message, playerScore, computerScore);
   }
   // If the player wins
   else if (
@@ -51,21 +55,23 @@ function playRound(playerSelection, computerSelection) {
   ) {
     playerScore++;
     message = `You win! ${playerSelection} beats ${computerSelection}`;
-    displayRoundResult(message, playerScore, computerScore);
   }
   // If the player loses
   else {
     computerScore++;
     message = `You lose! ${computerSelection} beats ${playerSelection}`;
-    displayRoundResult(message, playerScore, computerScore);
   }
+  displayRoundResult(message, playerScore, computerScore);
   checkWinner(playerScore, computerScore);
 }
 
 function checkWinner(playerScore, computerScore) {
+  let message = "";
   if (playerScore === winningScore) {
-    console.log("You won the game!");
+    message = "You won the game!";
+    displayGameResult(message);
   } else if (computerScore === winningScore) {
-    console.log("You lost the game!");
+    message = "You lost the game!";
+    displayGameResult(message);
   }
 }
