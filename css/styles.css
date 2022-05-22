@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+button {
+    font-family: inherit;
+}
+
+.choices-display {
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+}
+
+.game-result {
+    margin-top: 3rem;
+}
