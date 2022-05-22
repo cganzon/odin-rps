@@ -10,6 +10,11 @@ body {
 
 button {
     font-family: inherit;
+    cursor: pointer;
+}
+
+.buttons {
+    margin-bottom: 2rem;
 }
 
 .choices-display {
