@@ -1,7 +1,13 @@
 const buttons = document.querySelectorAll(".btn");
+const playerChoice = document.querySelector(".player-choice");
+const computerChoice = document.querySelector(".computer-choice");
+const playerScoreDisplay = document.querySelector(".player-score");
+const computerScoreDisplay = document.querySelector(".computer-score");
+const roundResult = document.querySelector(".round-result");
+const gameResult = document.querySelector(".game-result");
+
 let playerScore = 0;
 let computerScore = 0;
-let gameOver = false;
 const winningScore = 5;
 
 buttons.forEach((button) => {
@@ -20,23 +26,17 @@ function computerPlay() {
 }
 
 function displayChoices(playerSelection, computerSelection) {
-  const playerChoice = document.querySelector(".player-choice");
   playerChoice.textContent = playerSelection;
-  const computerChoice = document.querySelector(".computer-choice");
   computerChoice.textContent = computerSelection;
 }
 
 function displayRoundResult(message, playerScore, computerScore) {
-  const roundResult = document.querySelector(".round-result");
-  const playerScoreDisplay = document.querySelector(".player-score");
-  const computerScoreDisplay = document.querySelector(".computer-score");
   roundResult.textContent = message;
   playerScoreDisplay.textContent = playerScore;
   computerScoreDisplay.textContent = computerScore;
 }
 
 function displayGameResult(message) {
-  const gameResult = document.querySelector(".game-result");
   gameResult.textContent = message;
   endGame();
 }
@@ -45,16 +45,14 @@ function playRound(playerSelection, computerSelection) {
   let message = "";
   if (playerSelection === computerSelection) {
     message = `Draw! You both chose ${playerSelection}`;
-  }
-  else if (
+  } else if (
     (playerSelection === "Rock" && computerSelection === "Scissors") ||
     (playerSelection === "Scissors" && computerSelection === "Paper") ||
     (playerSelection === "Paper" && computerSelection === "Rock")
   ) {
     playerScore++;
     message = `You win! ${playerSelection} beats ${computerSelection}`;
-  }
-  else {
+  } else {
     computerScore++;
     message = `You lose! ${computerSelection} beats ${playerSelection}`;
   }
@@ -74,5 +72,31 @@ function checkWinner(playerScore, computerScore) {
 }
 
 function endGame() {
-  return buttons.forEach(button => button.disabled = true);
+  showResetButton();
+  buttons.forEach((button) => (button.disabled = true));
+}
+
+function showResetButton() {
+  const container = document.querySelector(".container");
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Play again";
+  resetButton.classList.add("reset-btn");
+  container.append(resetButton);
+  resetButton.addEventListener("click", () => {
+    resetGame();
+  });
+}
+
+function resetGame() {
+  playerScore = 0;
+  computerScore = 0;
+  buttons.forEach((button) => (button.disabled = false));
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
+  playerChoice.textContent = "";
+  computerChoice.textContent = "";
+  roundResult.textContent = "";
+  gameResult.textContent = "";
+  const resetButton = document.querySelector(".reset-btn");
+  resetButton.remove();
 }
